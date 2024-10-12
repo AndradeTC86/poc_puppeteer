@@ -1,0 +1,15 @@
+{
+  "name": "poc_puppeteer",
+  "version": "1.0.0",
+  "description": "POC para avaliação do Puppeteer",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "thiago.andrade",
+  "license": "ISC",
+  "dependencies": {
+    "jest": "^29.7.0",
+    "puppeteer": "^23.5.3"
+  }
+}
