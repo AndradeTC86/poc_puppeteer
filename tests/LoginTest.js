@@ -1,22 +1,27 @@
-const BaseTest = require('../pages/BaseTest')
+
+const BaseTest = require('../utils/BaseTest')
 const LoginPage = require('../pages/LoginPage')
 const config = require('../utils/config')
 
 describe('Login Tests', () => {
-    let baseTest, loginPage
+    let baseTest
+    let loginPage
 
-    before(async () => {
+    beforeAll(async () => {
         baseTest = new BaseTest()
         await baseTest.setup()
         loginPage = new LoginPage(baseTest.page)
     })
 
-    after(async () => {
+    afterAll(async () => {
         await baseTest.teardown()
     })
 
-    it('should login with valid credentials', async () => {
+    test('should login with valid credentials', async () => {
         await loginPage.navigate(config.baseURL)
         await loginPage.login('standard_user', 'secret_sauce')
+        // Adicione verificações usando expect
+        const title = await loginPage.getText('.title')
+        expect(title).toBe('Products')
     })
 })
