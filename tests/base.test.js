@@ -3,7 +3,7 @@ const puppeteer = require('puppeteer')
 
 class BaseTest {
     async setup() {
-        this.browser = await puppeteer.launch({ headless: true })
+        this.browser = await puppeteer.launch({ headless: false })
         this.page = await this.browser.newPage()
     }
 
