@@ -1,10 +1,12 @@
+const config = require('../utils/config')
+
 class BasePage {
     constructor(page) {
         this.page = page
     }
 
-    async navigate(url) {
-        await this.page.goto(url)
+    async navigate(path = '/') {
+        await this.page.goto(`${config.baseURL}${path}`)
     }
 
     async waitForSelector(selector) {

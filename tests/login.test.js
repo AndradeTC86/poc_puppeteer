@@ -1,7 +1,7 @@
 
 const BaseTest = require('../utils/baseTest')
 const LoginPage = require('../pages/login.page')
-const config = require('../utils/config')
+const login = require('../fixtures/login.json')
 
 describe('Login Tests', () => {
     let baseTest
@@ -10,7 +10,11 @@ describe('Login Tests', () => {
     beforeAll(async () => {
         baseTest = new BaseTest()
         await baseTest.setup()
-        loginPage = new LoginPage(baseTest.page)
+        loginPage = new LoginPage(baseTest.page)        
+    })
+
+    beforeEach(async () => {
+        await loginPage.navigate('/')
     })
 
     afterAll(async () => {
@@ -18,9 +22,7 @@ describe('Login Tests', () => {
     })
 
     test('should login with valid credentials', async () => {
-        await loginPage.navigate(config.baseURL)
-        await loginPage.login('standard_user', 'secret_sauce')
-        // Adicione verificações usando expect
+        await loginPage.login(login.standard, login.password)        
         const title = await loginPage.getText('.title')
         expect(title).toBe('Products')
     })
