@@ -14,6 +14,11 @@ class LoginPage extends BasePage {
         await this.type(this.inputPassword, password)
         await this.click(this.btnLogin)
     }
+
+    async validateLockedUserMessage(){
+        const errorMessage = await this.getText(this.msgLockedUser)
+        expect(errorMessage).toBe('Epic sadface: Sorry, this user has been locked out.')
+    }
 }
 
 module.exports = LoginPage

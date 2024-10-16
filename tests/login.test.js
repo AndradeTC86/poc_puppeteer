@@ -21,9 +21,14 @@ describe('Login Tests', () => {
         await baseTest.teardown()
     })
 
-    test('should login with valid credentials', async () => {
+    test('Realizar login com usuário standard', async () => {
         await loginPage.login(login.standard, login.password)        
         const title = await loginPage.getText('.title')
         expect(title).toBe('Products')
+    })
+
+    test.only('Realizar login com usuário bloqueado', async () => {
+        await loginPage.login(login.locked, login.password)
+        await loginPage.validateLockedUserMessage()
     })
 })
