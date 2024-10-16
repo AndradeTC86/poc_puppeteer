@@ -1,5 +1,5 @@
 
-const BaseTest = require('../tests/base.test')
+const BaseTest = require('../utils/baseTest')
 const LoginPage = require('../pages/login.page')
 const config = require('../utils/config')
 
