@@ -31,4 +31,9 @@ describe('Login Tests', () => {
         await loginPage.login(login.locked, login.password)
         await loginPage.validateLockedUserMessage()
     })
+
+    test('Realizar login com usuário com erros de performance', async () => {
+        await loginPage.login(login.performance, login.password)
+        await productPage.validateResponseTime()    
+    }, 10000)
 })
