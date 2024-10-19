@@ -2,16 +2,16 @@ const BasePage = require('./base.page')
 
 class LoginPage extends BasePage {
     constructor(page) {
-        super(page);
-        this.inputUsername = '#user-name'
-        this.inputPassword = '#password'
+        super(page)
+        this.txtUserName = '#user-name'
+        this.txtPassword = '#password'
         this.btnLogin = '#login-button'
         this.msgLockedUser = '[data-test="error"]'
     }
 
     async login(username, password) {
-        await this.type(this.inputUsername, username)
-        await this.type(this.inputPassword, password)
+        await this.type(this.txtUserName, username)
+        await this.type(this.txtPassword, password)
         await this.click(this.btnLogin)
     }
 

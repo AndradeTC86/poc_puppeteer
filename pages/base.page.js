@@ -9,6 +9,10 @@ class BasePage {
         await this.page.goto(`${config.baseURL}${path}`)
     }
 
+    async getCurrentUrl(){
+        return await this.page.url()
+    }
+
     async waitForSelector(selector) {
         await this.page.waitForSelector(selector)
     }
