@@ -4,7 +4,7 @@ const LoginPage = require('../pages/login.page')
 const ProductPage = require('../pages/products.page')
 const login = require('../fixtures/login.json')
 
-describe('Login Tests', () => {
+describe('Testar feature login', () => {
     let baseTest
     let loginPage
     let productPage

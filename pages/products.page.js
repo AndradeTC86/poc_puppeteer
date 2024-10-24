@@ -1,5 +1,5 @@
 const BasePage = require('./base.page')
-const produtos = require('../fixtures/produtos.json')
+const produto = require('../fixtures/produtos.json')
 
 class ProductsPage extends BasePage {
     constructor(page){
@@ -24,6 +24,100 @@ class ProductsPage extends BasePage {
     async validatePageUrl(){
         const currentUrl = await this.getCurrentUrl()
         expect(currentUrl).toBe('https://www.saucedemo.com/inventory.html')
+    }
+
+    getBtnAddToCart(produto){
+        return `[data-test="add-to-cart-${produto}"]`
+    }
+
+    getBtnRemoveFromCart(produto){
+        return `[data-test="remove-${produto}"]`
+    }
+
+    async clickBtnAddToCart(){
+        await this.click(this.getBtnAddToCart(produto[0].produto))
+    }
+
+    async clickBtnRemoveFromCart(){
+        await this.click(this.getBtnRemoveFromCart(produto[0].produto))
+    }
+
+    async clickBtnAddToCartFromProductPage(){
+        await this.click(this.btnAddToCart)
+    }
+
+    async clickBtnRemoveFromCartFromProductPage(){
+        await this.click(this.btnRemoveFromCart)
+    }
+    
+    async clickBtnAddToCartAllProducts(){
+        for (const produtos of produto){
+            await this.click(this.getBtnAddToCart(produtos.produto))
+        }
+    }
+
+    async clickBtnRemoveFromCartAllProducts(){
+        for (const produtos of produto){
+            await this.click(this.getBtnRemoveFromCart(produtos.produto))
+        }
+    }
+
+    async clickBtnGoToCart(){
+        await this.click(this.btnCart)
+    }
+
+    async clickLinkBackToProducts(){
+        await this.click(this.lnkBackToProducts)
+    }
+
+    async clickImgProduct(){
+        await this.click(this.imgProduct)
+    }
+
+    async orderBy(optionText){
+        await this.page.select(this.menuOrdenar, optionText)
+    }
+
+    async orderByNameZtoA() {
+        await this.orderBy('Name (Z to A)');
+    }
+    
+    async orderByPriceLowToHigh() {
+        await this.orderBy('Price (low to high)');
+    }
+    
+    async orderByPriceHighToLow() {
+        await this.orderBy('Price (high to low)');
+    }
+
+    async validateBdgShoppingCartNumber(number){
+        const badgeText = await this.page.$eval(this.bdgShoppingCart, el => el.textContent)
+        expect(badgeText).toBe(String(number))
+    }
+
+    async validateBdgShoppingCartNotVisible(){
+        const isVisible = await this.page.$(this.bdgShoppingCart) !== null
+        expect(isVisible).toBeFalsy()
+    }
+
+    async validateBtnAddToCartFromProductPageVisible(){
+        const isVisible = await this.page.$(this.btnAddToCart) !== null
+        expect(isVisible).toBeTruthy()
+    }
+
+    async validateBtnRemoveFromCartFromProductPageVisible(){
+        const isVisible = await this.page.$(this.btnRemoveFromCart) !== null
+        expect(isVisible).toBeTruthy()
+    }
+
+    async validateBtnAddToCartVisible(){
+        const isVisible = await this.page.$(this.getBtnAddToCart(produto[0].produto)) !== null
+        expect(isVisible).toBeTruthy()
+    }
+
+    async validateBtnRemoveFromCartVisible(){
+        const isVisible = await this.page.$(this.getBtnRemoveFromCart(produto[0].produto)) !== null
+        expect(isVisible).toBeTruthy()
     }
 
     async validateResponseTime(){    
@@ -55,6 +149,30 @@ class ProductsPage extends BasePage {
         expect(width).toBe(262)
         expect(height).toBe(238) 
     }
+
+    async validateSortedProductsAtoZ() {
+        const items = await this.page.$$eval(this.lblItemName, els => els.map(el => el.textContent));
+        const sortedItems = [...items].sort();
+        expect(items).toEqual(sortedItems);
+      }
+    
+      async validateSortedProductsZtoA() {
+        const items = await this.page.$$eval(this.lblItemName, els => els.map(el => el.textContent));
+        const sortedItems = [...items].sort().reverse();
+        expect(items).toEqual(sortedItems);
+      }
+    
+      async validateSortedProductsLowToHigh() {
+        const items = await this.page.$$eval(this.lblItemPrice, els => els.map(el => parseFloat(el.textContent.replace('$', ''))));
+        const sortedPrices = [...items].sort((a, b) => a - b);
+        expect(items).toEqual(sortedPrices);
+      }
+    
+      async validateSortedProductsHighToLow() {
+        const items = await this.page.$$eval(this.lblItemPrice, els => els.map(el => parseFloat(el.textContent.replace('$', ''))));
+        const sortedPrices = [...items].sort((a, b) => b - a);
+        expect(items).toEqual(sortedPrices);
+      }
 }
 
 module.exports = ProductsPage
