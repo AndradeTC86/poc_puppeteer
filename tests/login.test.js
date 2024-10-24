@@ -30,10 +30,20 @@ describe('Login Tests', () => {
     test('Realizar login com usuário bloqueado', async () => {
         await loginPage.login(login.locked, login.password)
         await loginPage.validateLockedUserMessage()
+    })    
+
+    test('Realizar login com usuário com problema', async () => {        
+        await loginPage.login(login.problem, login.password)
+        await productPage.validateWrongImage()
     })
 
     test('Realizar login com usuário com erros de performance', async () => {
         await loginPage.login(login.performance, login.password)
         await productPage.validateResponseTime()    
     }, 10000)
+
+    test('Realizar login com usuário com erro de layout', async () => {        
+        await loginPage.login(login.visual, login.password)
+        await productPage.validateLargeImage()
+    })
 })

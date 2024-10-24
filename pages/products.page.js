@@ -26,7 +26,7 @@ class ProductsPage extends BasePage {
         expect(currentUrl).toBe('https://www.saucedemo.com/inventory.html')
     }
 
-    async validateResponseTime() {    
+    async validateResponseTime(){    
         const startTime = Date.now()
         const response = await this.page.evaluate(async () => {
             const response = await fetch(
@@ -40,7 +40,21 @@ class ProductsPage extends BasePage {
         const endTime = Date.now()    
         const responseDuration = endTime - startTime
         expect(responseDuration).toBeGreaterThan(400)
-    }   
+    }
+    
+    async validateWrongImage(){
+        const imgSrc = await this.page.$eval(this.imgProduct, img => img.getAttribute('src'))
+        expect(imgSrc).toBe("/static/media/sl-404.168b1cce.jpg")
+    }
+
+    async validateLargeImage(){
+        const imgElement = await this.page.$(this.imgProduct)
+        const boundingBox = await imgElement.boundingBox()
+        const width = Math.round(boundingBox.width)
+        const height = Math.round(boundingBox.height)
+        expect(width).toBe(262)
+        expect(height).toBe(238) 
+    }
 }
 
 module.exports = ProductsPage
