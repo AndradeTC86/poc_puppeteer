@@ -1,5 +1,5 @@
 const LoginPage = require('../pages/login.page')
-const ProductPage = require('../pages/products.page')
+const ProductsPage = require('../pages/products.page')
 const YourCartPage = require('../pages/yourCart.page')
 const CheckoutYourInfoPage = require('../pages/checkoutYourInfo.page')
 const CheckoutOverviewPage = require('../pages/checkoutOverview.page')
@@ -14,9 +14,9 @@ async function autoLogin(page){
 
 async function setCart(page){
     await autoLogin(page)
-    const productPage = new ProductPage(page)
-    await productPage.clickBtnAddToCart()
-    await productPage.clickBtnGoToCart()    
+    const productsPage = new ProductsPage(page)
+    await productsPage.clickBtnAddToCart()
+    await productsPage.clickBtnGoToCart()    
 }
 
 async function setCheckout(page){
