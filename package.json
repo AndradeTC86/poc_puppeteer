@@ -4,7 +4,7 @@
   "description": "POC para avaliação do Puppeteer",
   "main": "index.js",
   "scripts": {
-    "test": "jest"
+    "test": "jest --detectOpenHandles --verbose"
   },
   "author": "thiago.andrade",
   "license": "ISC",

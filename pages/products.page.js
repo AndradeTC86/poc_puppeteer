@@ -74,20 +74,16 @@ class ProductsPage extends BasePage {
         await this.click(this.imgProduct)
     }
 
-    async orderBy(optionText){
-        await this.page.select(this.menuOrdenar, optionText)
-    }
-
     async orderByNameZtoA() {
-        await this.orderBy('Name (Z to A)');
+        await this.page.select(this.menuOrdenar, 'za' )
     }
     
     async orderByPriceLowToHigh() {
-        await this.orderBy('Price (low to high)');
+        await this.page.select(this.menuOrdenar, 'lohi')
     }
     
     async orderByPriceHighToLow() {
-        await this.orderBy('Price (high to low)');
+        await this.page.select(this.menuOrdenar, 'hilo')        
     }
 
     async validateBdgShoppingCartNumber(number){
