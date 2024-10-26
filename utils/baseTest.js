@@ -10,7 +10,8 @@ class BaseTest {
                  '--disable-infobars', 
                  '--disable-extensions', 
                  '--disable-popup-blocking', 
-                 '--disable-web-security', 
+                 '--disable-web-security',
+                 '--disable-dev-shm-usage',
                  '--start-maximized'], 
             defaultViewport: null })
         this.page = await this.browser.newPage()
