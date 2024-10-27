@@ -1,11 +1,11 @@
-
 const puppeteer = require('puppeteer')
 
 class BaseTest {
     async setup() {
         this.browser = await puppeteer.launch({ headless: false,
              defaultViewport: false,
-            slowMo: 20 })
+             slowMo: 20,
+             args: ['--start-maximized'] })
         this.page = await this.browser.newPage()
     }
 
