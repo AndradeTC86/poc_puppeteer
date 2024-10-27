@@ -1,0 +1,235 @@
+npm test
+
+> poc_puppeteer@1.0.0 test
+> jest
+
+ FAIL  tests/checkoutComplete.test.js (8.092 s)
+  ● Testar feature Checkout Complete › Clicar no botão voltar para home deve voltar a página de produtos
+                                                                                                                                                                                                                                                                                                                  
+    thrown: "Exceeded timeout of 5000 ms for a hook.                                                                                                                                                                                                                                                              
+    Add a timeout value to this test to increase the timeout, if this is a long-running test. See https://jestjs.io/docs/api#testname-fn-timeout."                                                                                                                                                                
+                                                                                                                                                                                                                                                                                                                  
+       8 |     let checkoutCompletePage                                                                                                                                                                                                                                                                           
+       9 |                                                                                                                                                                                                                                                                                                        
+    > 10 |     beforeEach(async () => {                                                                                                                                                                                                                                                                           
+         |     ^                                                                                                                                                                                                                                                                                                  
+      11 |         baseTest = new BaseTest()                                                                                                                                                                                                                                                                      
+      12 |         await baseTest.setup()                                                                                                                                                                                                                                                                         
+      13 |         checkoutCompletePage = new CheckoutCompletePage(baseTest.page)                                                                                                                                                                                                                                 
+
+      at beforeEach (tests/checkoutComplete.test.js:10:5)
+      at Object.describe (tests/checkoutComplete.test.js:6:1)
+
+ FAIL  tests/checkoutOverview.test.js (13.149 s)
+  ● Testar feature Checkout Overview › Botão cancelar deve voltar para a página de produtos
+
+    thrown: "Exceeded timeout of 5000 ms for a hook.
+    Add a timeout value to this test to increase the timeout, if this is a long-running test. See https://jestjs.io/docs/api#testname-fn-timeout."
+
+       9 |     let checkoutOverviewPage
+      10 |     
+    > 11 |     beforeEach(async () => {
+         |     ^
+      12 |         baseTest = new BaseTest()
+      13 |         await baseTest.setup()
+      14 |         checkoutOverviewPage = new CheckoutOverviewPage(baseTest.page)
+
+      at beforeEach (tests/checkoutOverview.test.js:11:5)
+      at Object.describe (tests/checkoutOverview.test.js:7:1)
+
+  ● Testar feature Checkout Overview › Botão continuar deve finalizar o pedido
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: "Checkout: Your Information"
+    Received: "Checkout: Overview"
+
+      15 |     async validatePageTitle(){
+      16 |         const titletext = await this.getText(this.lblTitle)
+    > 17 |         expect(titletext).toBe('Checkout: Your Information')
+         |                           ^
+      18 |     }
+      19 |
+      20 |     async validatePageUrl(){
+
+      at CheckoutYourInfoPage.toBe [as validatePageTitle] (pages/checkoutYourInfo.page.js:17:27)
+      at Object.<anonymous> (tests/checkoutOverview.test.js:16:9)
+
+ FAIL  tests/yourCart.test.js (21.178 s)
+  ● Testar feature Your Cart › Validar botão continuar comprando
+
+    thrown: "Exceeded timeout of 5000 ms for a hook.
+    Add a timeout value to this test to increase the timeout, if this is a long-running test. See https://jestjs.io/docs/api#testname-fn-timeout."
+
+       9 |     let yourCartPage
+      10 |     
+    > 11 |     beforeEach(async () => {
+         |     ^
+      12 |         baseTest = new BaseTest()
+      13 |         await baseTest.setup()
+      14 |         yourCartPage = new YourCartPage(baseTest.page)
+
+      at beforeEach (tests/yourCart.test.js:11:5)
+      at Object.describe (tests/yourCart.test.js:7:1)
+
+  ● Testar feature Your Cart › Validar botão remover produto
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: "Your Cart"
+    Received: "Products"
+
+      13 |     async validatePageTitle(){
+      14 |         const titletext = await this.getText(this.lblTitle)
+    > 15 |         expect(titletext).toBe('Your Cart')
+         |                           ^
+      16 |     }
+      17 |
+      18 |     async validatePageUrl(){
+
+      at YourCartPage.toBe [as validatePageTitle] (pages/yourCart.page.js:15:27)
+      at Object.<anonymous> (tests/yourCart.test.js:16:9)
+
+  ● Testar feature Your Cart › Validar botão checkout
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: "Checkout: Your Information"
+    Received: "Your Cart"
+
+      15 |     async validatePageTitle(){
+      16 |         const titletext = await this.getText(this.lblTitle)
+    > 17 |         expect(titletext).toBe('Checkout: Your Information')
+         |                           ^
+      18 |     }
+      19 |
+      20 |     async validatePageUrl(){
+
+      at CheckoutYourInfoPage.toBe [as validatePageTitle] (pages/checkoutYourInfo.page.js:17:27)
+      at Object.<anonymous> (tests/yourCart.test.js:39:9)
+
+  ● Testar feature Your Cart › Validar botão checkout
+
+    thrown: "Exceeded timeout of 5000 ms for a test while waiting for `done()` to be called.
+    Add a timeout value to this test to increase the timeout, if this is a long-running test. See https://jestjs.io/docs/api#testname-fn-timeout."
+
+      34 |     })
+      35 |
+    > 36 |     test('Validar botão checkout', async ({ page }) => {
+         |     ^
+      37 |         await yourCartPage.clickBtnCheckout()
+      38 |         let checkoutYourInfo = new CheckoutYourInfoPage(baseTest.page)
+      39 |         await checkoutYourInfo.validatePageTitle()
+
+      at test (tests/yourCart.test.js:36:5)
+      at Object.describe (tests/yourCart.test.js:7:1)
+
+ FAIL  tests/checkoutYourInfo.test.js (21.528 s)
+  ● Testar feature Checkout Your Information › Clicar botão cancelar deve retornar ao carrinho e não salva as informações
+
+    No element found for selector: [data-test="checkout"]
+
+      36 |
+      37 |     async clickBtnCheckout(){
+    > 38 |         await this.page.click(this.btnCheckout)
+         |         ^
+      39 |     }
+      40 |
+      41 |     getBtnRemoveFromCart(produto){
+
+      at assert (node_modules/puppeteer-core/src/util/assert.ts:19:11)
+      at CdpFrame.click (node_modules/puppeteer-core/src/api/Frame.ts:1051:11)
+      at YourCartPage.clickBtnCheckout (pages/yourCart.page.js:38:9)
+      at setCheckout (commands/commands.js:25:5)
+      at Object.<anonymous> (tests/checkoutYourInfo.test.js:16:9)
+
+  ● Testar feature Checkout Your Information › Validar preencher os campos de texto e clicar em continuar
+
+    thrown: "Exceeded timeout of 5000 ms for a test while waiting for `done()` to be called.
+    Add a timeout value to this test to increase the timeout, if this is a long-running test. See https://jestjs.io/docs/api#testname-fn-timeout."
+
+      35 |     })
+      36 |
+    > 37 |     test('Validar preencher os campos de texto e clicar em continuar', async ({ page }) => {        
+         |     ^
+      38 |         await checkoutYourInfoPage.fillTextFields(cliente.firstName, cliente.lastName, cliente.zipCode)
+      39 |         await checkoutYourInfoPage.clickBtnContinue()
+      40 |         let checkoutOverviewPage = new CheckoutOverviewPage(baseTest.page)
+
+      at test (tests/checkoutYourInfo.test.js:37:5)
+      at Object.describe (tests/checkoutYourInfo.test.js:8:1)
+
+  ● Testar feature Checkout Your Information › Validar obrigatoriedade dos campos de texto
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: "Error: Last Name is required"
+    Received: "Error: First Name is required"
+
+      67 |     async validateLastNameRequiredMessage(){
+      68 |         const errorMessage = await this.page.$eval(this.msgError, el => el.textContent)
+    > 69 |         expect(errorMessage).toBe('Error: Last Name is required')
+         |                              ^
+      70 |     }
+      71 |
+      72 |     async validateZipCodeRequiredMessage(){
+
+      at CheckoutYourInfoPage.toBe [as validateLastNameRequiredMessage] (pages/checkoutYourInfo.page.js:69:30)
+      at Object.<anonymous> (tests/checkoutYourInfo.test.js:50:9)
+
+ PASS  tests/login.test.js (27.553 s)
+ FAIL  tests/products.test.js (36.008 s)
+  ● Testar feature lista de produtos › Inserir produto no carrinho e validar que foi gravado corretamente no carrinho
+
+    thrown: "Exceeded timeout of 5000 ms for a test while waiting for `done()` to be called.
+    Add a timeout value to this test to increase the timeout, if this is a long-running test. See https://jestjs.io/docs/api#testname-fn-timeout."
+
+      21 |     })
+      22 |
+    > 23 |     test('Inserir produto no carrinho e validar que foi gravado corretamente no carrinho', async ({ page }) => {
+         |     ^
+      24 |         await productsPage.clickBtnAddToCart()
+      25 |         await productsPage.validateBdgShoppingCartNumber('1')
+      26 |         await productsPage.clickBtnGoToCart()
+
+      at test (tests/products.test.js:23:5)
+      at Object.describe (tests/products.test.js:6:1)
+
+  ● Testar feature lista de produtos › Adicionar produto no carrinho pela página do produto e verificar que gravou corretamente no carrinho
+
+    thrown: "Exceeded timeout of 5000 ms for a test while waiting for `done()` to be called.
+    Add a timeout value to this test to increase the timeout, if this is a long-running test. See https://jestjs.io/docs/api#testname-fn-timeout."
+
+      38 |     })
+      39 |
+    > 40 |     test('Adicionar produto no carrinho pela página do produto e verificar que gravou corretamente no carrinho', async ({ page }) => {
+         |     ^
+      41 |         await productsPage.clickImgProduct()
+      42 |         await productsPage.clickBtnAddToCartFromProductPage()
+      43 |         await productsPage.validateBdgShoppingCartNumber('1')
+
+      at test (tests/products.test.js:40:5)
+      at Object.describe (tests/products.test.js:6:1)
+
+  ● Testar feature lista de produtos › Validar adicionar e remover todos os produtos no carrinho
+
+    expect(received).toBeFalsy()
+
+    Received: true
+
+      94 |     async validateBdgShoppingCartNotVisible(){
+      95 |         const isVisible = await this.page.$(this.bdgShoppingCart) !== null
+    > 96 |         expect(isVisible).toBeFalsy()
+         |                           ^
+      97 |     }
+      98 |
+      99 |     async validateBtnAddToCartFromProductPageVisible(){
+
+      at ProductsPage.toBeFalsy [as validateBdgShoppingCartNotVisible] (pages/products.page.js:96:27)
+      at Object.<anonymous> (tests/products.test.js:65:9)
+
+Test Suites: 5 failed, 1 passed, 6 total
+Tests:       12 failed, 11 passed, 23 total
+Snapshots:   0 total
+Time:        36.402 s
+Ran all test suites.
