@@ -10,7 +10,7 @@ describe('Testar feature Checkout Complete', () => {
     beforeEach(async () => {
         baseTest = new BaseTest()
         await baseTest.setup()
-        checkoutCompletePage = new CheckoutOverviewPage(baseTest.page)
+        checkoutCompletePage = new CheckoutCompletePage(baseTest.page)
         await setCheckoutComplete(baseTest.page)        
         await checkoutCompletePage.validatePageTitle()
         await checkoutCompletePage.validatePageUrl()
