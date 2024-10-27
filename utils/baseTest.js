@@ -3,17 +3,9 @@ const puppeteer = require('puppeteer')
 
 class BaseTest {
     async setup() {
-        this.browser = await puppeteer.launch({ headless: false, 
-            args: ['--disable-gpu',
-                 '--no-sandbox',
-                 '--disable-setuid-sandbox', 
-                 '--disable-infobars', 
-                 '--disable-extensions', 
-                 '--disable-popup-blocking', 
-                 '--disable-web-security',
-                 '--disable-dev-shm-usage',
-                 '--start-maximized'], 
-            defaultViewport: null })
+        this.browser = await puppeteer.launch({ headless: false,
+             defaultViewport: false,
+            slowMo: 20 })
         this.page = await this.browser.newPage()
     }
 
