@@ -20,6 +20,7 @@ describe('Testar feature lista de produtos', () => {
         await baseTest.teardown()
     })
 
+    //Estudar o motivo desse teste apresentar erro na execução
     test('Inserir produto no carrinho e validar que foi gravado corretamente no carrinho', async ({ page }) => {
         await productsPage.clickBtnAddToCart()
         await productsPage.validateBdgShoppingCartNumber('1')
@@ -28,6 +29,7 @@ describe('Testar feature lista de produtos', () => {
         await yourCartPage.validateProductName()
     })
 
+    //Esse teste está passando na maior parte das vezes, mas é importante entender o que faz ele retornar erro
     test('Remover produto do carrinho pela página de produtos', async () => {
         await productsPage.clickBtnAddToCart()
         await productsPage.validateBdgShoppingCartNumber('1')
@@ -37,6 +39,7 @@ describe('Testar feature lista de produtos', () => {
         await productsPage.validateBtnAddToCartVisible()
     })
 
+    //Estudar o motivo desse teste apresentar erro na execução
     test('Adicionar produto no carrinho pela página do produto e verificar que gravou corretamente no carrinho', async ({ page }) => {
         await productsPage.clickImgProduct()
         await productsPage.clickBtnAddToCartFromProductPage()
@@ -46,6 +49,7 @@ describe('Testar feature lista de produtos', () => {
         await yourCartPage.validateProductName()
     })
 
+    //Estudar o motivo desse teste apresentar erro na execução
     test('Remover produto do carrinho pela página do produto e voltar a página de produtos', async () => {
         await productsPage.clickBtnAddToCart()
         await productsPage.validateBdgShoppingCartNumber('1')
@@ -58,6 +62,7 @@ describe('Testar feature lista de produtos', () => {
         await productsPage.validatePageTitle()
     })
 
+    //Estudar o motivo desse teste apresentar erro na execução
     test('Validar adicionar e remover todos os produtos no carrinho', async () => {
         await productsPage.clickBtnAddToCartAllProducts()
         await productsPage.validateBdgShoppingCartNumber('6')
