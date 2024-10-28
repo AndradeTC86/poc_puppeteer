@@ -22,6 +22,7 @@ describe('Testar feature Checkout Your Information', () => {
         await baseTest.teardown()
     })
 
+    //Estudar o motivo desse teste apresentar erro na execução
     test('Clicar botão cancelar deve retornar ao carrinho e não salva as informações', async ({ page }) => {        
         await checkoutYourInfoPage.fillTextFields(cliente.firstName, cliente.lastName, cliente.zipCode)
         await checkoutYourInfoPage.clickBtnCancel()
@@ -34,6 +35,7 @@ describe('Testar feature Checkout Your Information', () => {
         await checkoutYourInfoPage.validateTxtZipCodeEmpty()
     })
 
+    //Estudar o motivo desse teste apresentar erro na execução
     test('Validar preencher os campos de texto e clicar em continuar', async ({ page }) => {        
         await checkoutYourInfoPage.fillTextFields(cliente.firstName, cliente.lastName, cliente.zipCode)
         await checkoutYourInfoPage.clickBtnContinue()
@@ -42,6 +44,7 @@ describe('Testar feature Checkout Your Information', () => {
         await checkoutOverviewPage.validatePageUrl()
     })
 
+    //Estudar o motivo desse teste apresentar erro na execução
     test('Validar obrigatoriedade dos campos de texto', async () => {        
         await checkoutYourInfoPage.clickBtnContinue()
         await checkoutYourInfoPage.validateFirstNameRequiredMessage()
