@@ -21,6 +21,7 @@ describe('Testar feature Checkout Overview', () => {
         await baseTest.teardown()
     })
 
+    //Estudar o motivo desse teste apresentar erro na execução
     test('Botão cancelar deve voltar para a página de produtos', async ({ page }) => {
         await checkoutOverviewPage.clickBtnCancel()
         let productsPage = new ProductsPage(baseTest.page)
@@ -28,6 +29,7 @@ describe('Testar feature Checkout Overview', () => {
         await productsPage.validatePageUrl()        
     })
 
+    //Estudar o motivo desse teste apresentar erro na execução
     test('Botão continuar deve finalizar o pedido', async ({ page }) => {        
         await checkoutOverviewPage.clickBtnContinue()
         let checkoutCompletePage = new CheckoutCompletePage(baseTest.page)
