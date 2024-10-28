@@ -20,6 +20,7 @@ describe('Testar feature Checkout Complete', () => {
         await baseTest.teardown()
     })
 
+    //Estudar o motivo desse teste apresentar erro na execução
     test('Clicar no botão voltar para home deve voltar a página de produtos', async ({ page }) => {
         await checkoutCompletePage.clickBtnBackToHome()
         let productsPage = new ProductsPage(baseTest.page)
