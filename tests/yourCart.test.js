@@ -21,6 +21,7 @@ describe('Testar feature Your Cart', () => {
         await baseTest.teardown()
     })
 
+    //Estudar o motivo desse teste apresentar erro na execução
     test('Validar botão continuar comprando', async ({ page }) => {
         await yourCartPage.clickBtnContinueShopping()
         let productsPage = new ProductsPage(baseTest.page)
@@ -28,11 +29,13 @@ describe('Testar feature Your Cart', () => {
         
     })
 
+    //Estudar o motivo desse teste apresentar erro na execução
     test('Validar botão remover produto', async () => {
         await yourCartPage.clickBtnRemoveFromCart()
         await yourCartPage.validateProductNameNotVisible()
     })
 
+    //Estudar o motivo desse teste apresentar erro na execução
     test('Validar botão checkout', async ({ page }) => {
         await yourCartPage.clickBtnCheckout()
         let checkoutYourInfo = new CheckoutYourInfoPage(baseTest.page)
