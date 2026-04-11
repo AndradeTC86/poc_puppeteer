@@ -134,7 +134,7 @@ class ProductsPage extends BasePage {
     
     async validateWrongImage(){
         const imgSrc = await this.page.$eval(this.imgProduct, img => img.getAttribute('src'))
-        expect(imgSrc).toBe("/static/media/sl-404.168b1cce.jpg")
+        expect(imgSrc).toBe("/static/media/sl-404.168b1cce10384b857a6f.jpg")
     }
 
     async validateLargeImage(){
