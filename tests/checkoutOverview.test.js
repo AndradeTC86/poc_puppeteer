@@ -1,5 +1,5 @@
 const BaseTest = require('../utils/baseTest')
-const CheckoutOverviewPage = require('../pages/checkoutYourInfo.page')
+const CheckoutOverviewPage = require('../pages/checkoutOverview.page')
 const ProductsPage = require('../pages/products.page')
 const CheckoutCompletePage = require('../pages/checkoutComplete.page')
 const { setCheckoutOverview } = require('../commands/commands')

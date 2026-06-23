@@ -1,7 +1,7 @@
 const BaseTest = require('../utils/baseTest')
 const YourCartPage = require('../pages/yourCart.page')
 const CheckoutYourInfoPage = require('../pages/checkoutYourInfo.page')
-const CheckoutOverviewPage = require('../pages/checkoutYourInfo.page')
+const CheckoutOverviewPage = require('../pages/checkoutOverview.page')
 const { setCheckout } = require('../commands/commands')
 const cliente = require('../fixtures/clientes.json')
 
